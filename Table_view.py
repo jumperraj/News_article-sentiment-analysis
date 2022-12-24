@@ -29,6 +29,9 @@ class TestApp(Frame):
             Button1 = Button(self, text="Generate Sentiment",
                                 command=self.display,fg="black",bg="#d7f542",width=25,height=2,border=0,font="lucida 15 bold")
             Button1.place(x=600, y=0)
+            Button1.bind("<Enter>", self.on_enter)
+            Button1.bind("<Leave>", self.on_leave)
+
         def display(self):
             global screen
             screen = Toplevel(self.main)
@@ -36,6 +39,11 @@ class TestApp(Frame):
             screen.geometry("1300x120")
             Label(screen, text=f"{Sentiment_analysis_engine.string}",fg="white",bg="black",borderwidth=2, font="time 15 ").pack(fill=BOTH)
 
+        def on_enter(self,e):
+            e.widget['background'] = 'green'
+
+        def on_leave(self,e):
+            e.widget['background'] = '#d7f542'
 
 
 
